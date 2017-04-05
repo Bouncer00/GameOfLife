@@ -24,7 +24,6 @@ public class Main {
             final Generation newGeneration = rulesService.getNewGeneration(generation);
             generationPresenter.presentGeneration(newGeneration);
             Thread.sleep(500);
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             generation = newGeneration;
         }
     }
