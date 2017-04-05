@@ -4,8 +4,18 @@ import java.util.Objects;
 
 public class Cell {
     private boolean alive;
+    private int XCoordinate;
+    private int YCoordinate;
 
-    public Cell(final boolean alive) {
+    Cell(final Cell oldCell){
+        this.alive = oldCell.alive;
+        this.XCoordinate = oldCell.XCoordinate;
+        this.YCoordinate = oldCell.YCoordinate;
+    }
+
+    Cell(final int x, final int y, final boolean alive){
+        this.XCoordinate = x;
+        this.YCoordinate = y;
         this.alive = alive;
     }
 
@@ -17,18 +27,26 @@ public class Cell {
         this.alive = alive;
     }
 
+    public int getXCoordinate() {
+        return XCoordinate;
+    }
+
+    public int getYCoordinate() {
+        return YCoordinate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cell cell = (Cell) o;
-        return alive == cell.alive;
+        return alive == cell.alive &&
+                XCoordinate == cell.XCoordinate &&
+                YCoordinate == cell.YCoordinate;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(alive);
+        return Objects.hash(alive, XCoordinate, YCoordinate);
     }
-
-    
 }
