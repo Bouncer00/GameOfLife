@@ -20,7 +20,7 @@ public class Main {
 
         final RulesService rulesService = new RulesService();
 
-        for(int i = 0 ; i < 100 ; i++){
+        for(int i = 0 ; i < 1000 ; i++){
             final Generation newGeneration = rulesService.getNewGeneration(generation);
             generationPresenter.presentGeneration(newGeneration);
             Thread.sleep(500);

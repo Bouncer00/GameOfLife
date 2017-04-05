@@ -15,6 +15,6 @@ public class ConsoleGenerationPresenter{
     }
 
     private String getCellSymbol(final Cell cell){
-        return cell.isAlive() ? "X" : ".";
+        return cell.isAlive() ? "X" : " ";
     }
 }
