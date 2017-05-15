@@ -17,3 +17,5 @@ hs_err_pid*
 target
 
 .vertx
+
+src/main/resources/web/node_modules

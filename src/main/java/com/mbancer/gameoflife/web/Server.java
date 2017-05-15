@@ -2,6 +2,7 @@ package com.mbancer.gameoflife.web;
 
 
 import io.vertx.core.Vertx;
+import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.StaticHandler;
@@ -46,6 +47,9 @@ public class Server {
 
     private void configureServingStaticFiles(final Router router){
         router.route().handler(StaticHandler.create());
+        router.route(HttpMethod.GET, "/").handler(event -> {
+            event.response().sendFile("webroot/index.html");
+        });
     }
 
     private void configureWebSocket(final Router router) {
