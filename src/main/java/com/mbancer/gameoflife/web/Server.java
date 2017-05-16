@@ -46,9 +46,18 @@ public class Server {
     }
 
     private void configureServingStaticFiles(final Router router){
-        router.route().handler(StaticHandler.create());
-        router.route(HttpMethod.GET, "/").handler(event -> {
-            event.response().sendFile("webroot/index.html");
+        router.route()
+                .handler(StaticHandler.create("web/src"))
+                .handler(StaticHandler.create("web/dist"));
+        router.route().handler(req -> {
+            String filePath = "web/";
+            if("/".equals(req.normalisedPath())) {
+                filePath += "src/index.html";
+            }
+            else if(!req.normalisedPath().contains("..") && !req.normalisedPath().contains("api")){
+                filePath += "src/" + req.normalisedPath();
+            }
+            req.response().sendFile(filePath);
         });
     }
 
