@@ -49,13 +49,14 @@ public class Server {
         router.route()
                 .handler(StaticHandler.create("web/src"))
                 .handler(StaticHandler.create("web/dist"));
+
         router.route().handler(req -> {
             String filePath = "web/";
             if("/".equals(req.normalisedPath())) {
-                filePath += "src/index.html";
+                filePath += "web/dist/index.html";
             }
             else if(!req.normalisedPath().contains("..") && !req.normalisedPath().contains("api")){
-                filePath += "src/" + req.normalisedPath();
+                filePath += "dist/" + req.normalisedPath();
             }
             req.response().sendFile(filePath);
         });
